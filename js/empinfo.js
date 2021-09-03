@@ -75,4 +75,4 @@ class EmployeeInfo {
     toString() {
       return `name = ${this.name} profileImage = ${this.picture}  gender ${this.gender} department = ${this.department} salary = ${this.salary} startDate =  ${this.startDate} notes = ${this.notes} `;
     }
-  }
+}
