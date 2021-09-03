@@ -1,69 +1,70 @@
   
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!--UC1 Employee Payroll App with logo-->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Payroll Form</title>
-    <link href="<link rel=" preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="../css/Payroll_Form.css">
-    <script defer src="../js/Payroll_Form.js"></script>
-    <script defer src="../js/EmployeeInfo.js"></script>
+    <title>Employee Payroll Form</title>
 </head>
 
 <body>
+    <!-- UC9 -->
+    <script defer src="../js/EmployeeInfo.js"></script>
+    <!--UC8-->
+    <script defer src="../js/Payroll_Form.js"></script>
     <header class="header-content header">
         <div class="logo-content">
-            <img src="../assets/images/logo.png" alt="">
+            <img src="../assets/images/logo.png" alt="logo">
             <div>
                 <span class="emp-text">EMPLOYEE</span><br>
                 <span class="emp-text emp-payroll">PAYROLL</span>
             </div>
         </div>
     </header>
-    <div class="form-content">
-        <form id="emp-form-html" action="#" class="form" onsubmit="save();return false">
-            <div class="form-head">
-                Employee Payroll Form
-            </div>
+
+    <!--UC2 Employee Payroll Form with Header and Name-->
+    <div id="formId" class=" form-content">
+        <form class="form" action="#" onreset="resetForm()" onsubmit="save()">
+            <div class="form-head">Employee Payroll Form</div>
+            <!--Adding field for name-->
             <div class="row-content">
-                <label for="name" class="label text">Name :</label>
-                <input type="text" class="input" id="name" name="name" placeholder="your name.." required>
-                <error-output class="text-error" for="name"></error-output>
+                <label class="label text" for="name">Name</label>
+                <input class="input" type="text" id="name" name="name" placeholder="Your name..." required>
+                <error-output class="text-error" for="text"></error-output>
             </div>
-            <!--profile input fields-->
+            <!--UC3 Adding profile pictures-->
             <div class="row-content">
-                <label class="label text" for="profile">Profile image :</label>
+                <label class="label text" for="profile">Profile image</label>
                 <div class="profile-radio-content">
                     <label>
-                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse -1.png"
-                            required>
-                        <img class="profile" id="image1" src="../assets/profile-images/Ellipse -1.png">
+                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse-1.png">
+                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -1.png">
                     </label>
+
                     <label>
-                        <input type="radio" id="profile2" name="profile" value="../assets/profile-images/Ellipse -2.png"
-                            required>
-                        <img class="profile" id="image2" src="../assets/profile-images/Ellipse -2.png">
+                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse-2">
+                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -2.png">
                     </label>
+
                     <label>
-                        <input type="radio" id="profile3" name="profile" value="../assets/profile-images/Ellipse -5.png"
-                            required>
-                        <img class="profile" id="image3" src="../assets/profile-images/Ellipse -5.png">
+                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse-3">
+                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -3.png">
                     </label>
+
                     <label>
-                        <input type="radio" id="profile4" name="profile" value="../assets/profile-images/Ellipse -7.png"
-                            required>
-                        <img class="profile" id="image4" src="../assets/profile-images/Ellipse -7.png">
+                        <input type="radio" id="profile1" name="profile" value="../assets/profile-images/Ellipse-4">
+                        <img class="profile" id='image1' src="../assets/profile-images/Ellipse -4.png">
                     </label>
                 </div>
             </div>
-            <!-- Gender -->
+            <!--UC4 Employee Payroll Form with Gender, Department and Salary Range-->
             <div class="row-content">
-                <label class="label text" for="gender">Gender :</label>
+                <!--Adding gender-->
+                <label class="label text" for="gender">Gender</label>
                 <div>
                     <input type="radio" id="male" name="gender" value="male">
                     <label class="text" for="male">Male</label>
@@ -71,32 +72,34 @@
                     <label class="text" for="female">Female</label>
                 </div>
             </div>
-            <!-- department -->
+
             <div class="row-content">
-                <label class="label text" for="department">Department :</label>
+                <!--Adding department-->
+                <label class="label text" for="department">Department</label>
                 <div>
-                    <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                    <input type="checkbox" type="checkbox" id="hr" name="department" value="HR">
                     <label class="text" for="hr">HR</label>
-                    <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
+                    <input type="checkbox" type="checkbox" id="sales" name="department" value="Sales">
                     <label class="text" for="sales">Sales</label>
-                    <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                    <input type="checkbox" type="checkbox" id="finance" name="department" value="Finance">
                     <label class="text" for="finance">Finance</label>
-                    <input class="checkbox" type="checkbox" id="engineer" name="engineer" value="Engineer">
+                    <input type="checkbox" type="checkbox" id="engineer" name="department" value="Engineer">
                     <label class="text" for="engineer">Engineer</label>
-                    <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
+                    <input type="checkbox" type="checkbox" id="others" name="department" value="Others">
                     <label class="text" for="others">Others</label>
                 </div>
             </div>
-            <!-- salary -->
             <div class="row-content">
-                <label class="label text" for="salary">Choose your Salary :</label>
-                <input style="padding: 0%;" class="input" type="range" id="salary" name="salary" min="300000"
-                    max="500000" step="100" value="400000">
+                <!--Adding Salary Slider-->
+                <label class="label text" for="salary">Salary</label>
+                <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100"
+                    value="400000">
                 <output class="salary-output text" for="salary">400000</output>
             </div>
-            <!-- start date -->
+            <!--UC5 Ability to specify the start date with Day, Month and year as Select Input Item-->
             <div class="row-content">
-                <label class="label text" for="startDate">Start Date :</label>
+                <label class="label text" for="startDate">Start Date</label>
+                <!--Adding start date-->
                 <div>
                     <select id="day" name="Day">
                         <option value="1">1</option>
@@ -131,22 +134,23 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select name="Month" id="month">
+                    <select id="month" name="Month">
+                        <!--adding start month-->
                         <option value="Jan">January</option>
-                        <option value="Feb">Febuary</option>
-                        <option value="Mar">March</option>
-                        <option value="Apr">April</option>
+                        <option value="Feb">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
                         <option value="May">May</option>
-                        <option value="Jun">June</option>
-                        <option value="Jul">July</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
                         <option value="Aug">August</option>
-                        <option value="Sep">September</option>
+                        <option value="Sept">September</option>
                         <option value="Oct">October</option>
                         <option value="Nov">November</option>
                         <option value="Dec">December</option>
                     </select>
-                    <select name="Year" id="year">
-                        <option value="2020">2021</option>
+                    <select id="year" name="Year">
+                        <!--Adding start year-->
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
@@ -155,18 +159,16 @@
                     </select>
                 </div>
             </div>
-            <!-- Note textbox -->
+            <!--UC6 Ability to add Notes and Button-->
             <div class="row-content">
-                <label class="label text" for="notes">Notes</label>
-                <textarea id="notes" class="input" name="Notes" placeholder="" style="height:100px"></textarea>
+                <label class="label-text" for="notes">Notes</label>
+                <textarea class="input" name="Notes" id="notes" placeholder="" style="height: 100px"></textarea>
             </div>
-            <!-- Cancle Button -->
             <div class="buttonParent">
-                <a href="./home.html" class="resetButton button cancelButton">Cancel</a>
-                <!-- Submit and Reset Button -->
+                <a href="/home.html" class="resetButton button cancelButton">Cancel</a>
                 <div class="submit-reset">
                     <button type="submit" class="button submitButton" id="submitButton">Submit</button>
-                    <button type="reset" class="resetButton button" id="reset">Reset</button>
+                    <button type="reset" class="resetButton button">Reset</button>
                 </div>
             </div>
         </form>

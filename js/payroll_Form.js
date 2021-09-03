@@ -1,3 +1,4 @@
+// UC-8
 const salary = document.querySelector("#salary");
 const output = document.querySelector(".salary-output");
 output.textContent = salary.value;
@@ -5,48 +6,101 @@ salary.addEventListener("input", function () {
   output.textContent = salary.value;
 });
 
-const text = document.querySelector("#name");
-const textError = document.querySelector(".text-error");
-text.addEventListener("input", function () {
-  let nameRegex = RegExp("^[A-Z]{1}[A-Za-z]{2,}$");
-  if (nameRegex.test(text.value)) {
-    textError.textContent = "";
-  } else {
-    textError.textContent = "Name is Incorrect";
-  }
+// UC-10
+window.addEventListener("DOMContentLoaded", (event) => {
+  const name = document.querySelector("#name");
+  const textError = document.querySelector(".text-error");
+  name.addEventListener("input", function () {
+    if (name.value.length == 0) {
+      textError.textContent = "";
+      return;
+    }
+    try {
+      new EmployeePayrollData().name = name.value;
+      textError.textContent = "";
+    } catch (e) {
+      textError.textContent = e;
+    }
+  });
+
+  const salary = document.querySelector("#salary");
+  const output = document.querySelector(".salary-output");
+  output.textContent = salary.value;
+  salary.addEventListener("input", function () {
+    output.textContent = salary.value;
+  });
 });
 
-document.getElementById("reset").onclick = function () {
-  document.getElementById("emp-form-html").reset();
-  alert("Form has been reseted.");
+// UC-11
+
+//save function called on submit
+const save = () => {
+  try {
+    let employeePayrollData = createEmployeePayroll();
+    createAndUpdateStorage(employeePayrollData);
+  } catch (e) {
+    return;
+  }
 };
 
-document.getElementById("submitButton").onclick = function () {
-  try {
-    let name = document.getElementById("name").value;
-    let picture = document.querySelector("input[name = profile]:checked").value;
-    let gender = document.querySelector("input[name = gender]:checked").value;
-    let department = document.querySelector(
-      "input[name = department]:checked"
-    ).value;
-    let salary = document.getElementById("salary").value;
-    let startDate = new Date(
-      parseInt(document.getElementById("year").value),
-      parseInt(document.getElementById("month").value),
-      parseInt(document.getElementById("day").value)
-    );
-    let notes = document.getElementById("notes").value;
-    let employee = new EmployeeInfo(
-      "name",
-      "picture",
-      "gender",
-      "department",
-      "salary",
-      "startDate",
-      "notes"
-    );
-    alert(employee.toString());
-  } catch (error) {
-    alert(error);
+// UC-12
+//Saving Employee Payroll to Local Storage
+function createAndUpdateStorage(employeePayrollData) {
+  let employeePayrollList = JSON.parse(
+    localStorage.getItem("EmployeePayrollList")
+  );
+  if (employeePayrollList != undefined) {
+    employeePayrollList.push(employeePayrollData);
+  } else {
+    employeePayrollList = [employeePayrollData];
   }
+  alert(employeePayrollList.toString());
+  localStorage.setItem(
+    "EmployeePayrollList",
+    JSON.stringify(employeePayrollList)
+  );
+}
+
+//function to populate employee object with html form data
+const createEmployeePayroll = () => {
+  let employeePayrollData = new EmployeePayrollData();
+  try {
+    employeePayrollData.name = getInputValuesById("#name");
+  } catch (e) {
+    setTextValue(".test-error", e);
+    throw e;
+  }
+  employeePayrollData.profilePic = getSelectedValues("[name=profile]").pop();
+  employeePayrollData.gender = getSelectedValues("[name=gender]").pop();
+  employeePayrollData.department = getSelectedValues("[name=department]");
+  employeePayrollData.salary = getInputValuesById("#salary");
+  employeePayrollData.note = getInputValuesById("#notes");
+  let date =
+    getInputValuesById("#day") +
+    " " +
+    getInputValuesById("#month") +
+    " " +
+    getInputValuesById("#year");
+  employeePayrollData.date = Date.parse(date);
+  alert("employeePayrollData.toString()");
+  return employeePayrollData;
+};
+//function to get html form values of radio buttons
+const getSelectedValues = (propertyValue) => {
+  let allItems = document.querySelectorAll(propertyValue);
+  let selItems = [];
+  allItems.forEach((item) => {
+    if (item.checked) selItems.push(item.value);
+  });
+  return selItems;
+};
+//function to get form values by Id
+const getInputValuesById = (id) => {
+  let value = document.querySelector(id).value;
+  return value;
+};
+//function to get form values
+const getInputElementValue = (id) => {
+  let value = document.getElementById(id).value;
+  return value;
 };
