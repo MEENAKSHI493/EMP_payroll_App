@@ -16,7 +16,7 @@ class EmployeeInfo {
     set name(name) {
       let nameRegex = /[A-Z][a-z]{2,}/;
       if (nameRegex.test(name)) this._name = name;
-      else throw "Invalid name";
+      else throw "Invalid Name";
     }
   
     get picture() {
@@ -55,7 +55,13 @@ class EmployeeInfo {
     }
   
     set startDate(startDate) {
-      this._startDate = startDate;
+      startDate = startDate.getTime() + 30 * 24 * 60 * 60 * 1000;
+      let today = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+      if (today >= startDate) {
+        this._startDate = startDate;
+      } else {
+        throw "Invalid date";
+      }
     }
   
     get notes() {
