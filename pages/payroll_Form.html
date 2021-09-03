@@ -8,6 +8,7 @@
     <title>Employee Payroll Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/Payroll_Form.css">
+
 </head>
 
 <body>
@@ -27,7 +28,7 @@
             </div>
             <div class="row-content">
                 <label for="name" class="label text">Name</label>
-                <input type="text" class="input" id="name" name="name" placeholder="your name.." required>
+                <input type="text" class="input" id="name" name="name" placeholder="Enter Your Name.." required>
             </div>
             <!--profile input fields-->
             <div class="row-content">
@@ -84,8 +85,8 @@
             <!-- salary -->
             <div class="row-content">
                 <label class="label text" for="salary">Choose your Salary :</label>
-                <input class="input" type="range" id="salary" name="salary" min="300000" max="500000" step="100"
-                    value="400000">
+                <input style="padding: 0%;" class="input" type="range" id="salary" name="salary" min="300000"
+                    max="500000" step="100" value="400000">
                 <output class="salary-output text" for="salary">400000</output>
             </div>
             <!-- start date -->
@@ -164,7 +165,9 @@
                 </div>
             </div>
         </form>
+
     </div>
+    <script src="../js/Payroll_Form.js"></script>
 </body>
 
 </html>
