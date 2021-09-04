@@ -133,5 +133,4 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
   const setValue = (id, value) => {
     const element = document.querySelector(id);
-    element.value = value;
-  };
+    element.value =
