@@ -13,24 +13,62 @@ window.addEventListener("DOMContentLoaded", (event) => {
           <th>Start Date</th>
           <th>Actions</th>
       </tr>`;
-    const innerHtml = `${headerHtml}
-      <tr>
-          <td>
-              <img src="../assets/profile-images/Ellipse -2.png" alt="" class="profile">
-          </td>
-          <td>Mandeep</td>
-          <td>Male</td>
-          <td>
-              <div class="dept-label">Other</div>
-              <div class="dept-label">Finance</div>
-          </td>
-          <td>4000000</td>
-          <td>31 Aug 2020</td>
-          <td>
-              <img name=""1 src="../assets/icons/delete-black-18dp.svg" alt="delete" id="1" onclick="remove(this)">
-              <img name="1" src="../assets/icons/create-black-18dp.svg" alt="update" id="1" onclick="update(this)">
-          </td>
-      </tr>
-      `;
+    let empPayrollList = createEmployeePayrollJSON();
+    let innerHtml = `${headerHtml}`;
+    for (const empPayrollData of empPayrollList) {
+      innerHtml = `${innerHtml} 
+          <tr>
+              <td><img src="${
+                empPayrollData._profilePic
+              }" alt="" class="profile"></td>
+              <td>${empPayrollData._name}</td>
+              <td>${empPayrollData._gender}</td>
+              <td>${getDeptHtml(empPayrollData._department)}</td>
+              <td>${empPayrollData._salary}</td>
+              <td>${empPayrollData._startDate}</td>
+              <td>
+                  <img src="../assets/icons/delete-black-18dp.svg" alt="delete" id="${
+                    empPayrollData._id
+                  }" onclick="remove(this)">
+                  <img src="../assets/icons/create-black-18dp.svg" alt="update" id="${
+                    empPayrollData.id
+                  }" onclick="update(this)">
+              </td>
+          </tr>`;
+    }
     document.querySelector("#table-display").innerHTML = innerHtml;
+  };
+  
+  const createEmployeePayrollJSON = () => {
+    let empPayrollListLocal = [
+      {
+        _name: "Namdevreddy",
+        _gender: "Male",
+        _department: ["Engineer", "Others"],
+        _salary: "400000",
+        _startDate: "31 August 2020",
+        _note: "Hello All.",
+        _id: new Date().getTime(),
+        _profilePic: "../assets/profile-images/Ellipse -5.png",
+      },
+      {
+        _name: "Meena",
+        _gender: "Female",
+        _department: ["Finance"],
+        _salary: "400000",
+        _startDate: "12 November 2019",
+        _note: "Have a nice day.",
+        _id: new Date().getTime(),
+        _profilePic: "../assets/profile-images/Ellipse -7.png",
+      },
+    ];
+    return empPayrollListLocal;
+  };
+  
+  const getDeptHtml = (deptList) => {
+    let depthtml = "";
+    for (const dept of deptList) {
+      depthtml = `${depthtml} <div class="dept-label">${dept}</div>`;
+    }
+    return depthtml;
   };
