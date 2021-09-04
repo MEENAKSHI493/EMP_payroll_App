@@ -1,6 +1,4 @@
-//UC-9
 class EmployeePayrollData {
-    //getter and setter method
     get id() {
       return this._id;
     }
@@ -12,9 +10,12 @@ class EmployeePayrollData {
       return this._name;
     }
     set name(name) {
-      let nameRegex = RegExp("^[A-Z]{1}[a-zA-Z\\s]{2,}$");
-      if (nameRegex.test(name)) this._name = name;
-      else throw "Name is Incorrect!";
+      let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+      if (nameRegex.test(name)) {
+        this._name = name;
+      } else {
+        throw "Name is incorrect";
+      }
     }
   
     get profilePic() {
@@ -56,15 +57,14 @@ class EmployeePayrollData {
       return this._startDate;
     }
     set startDate(startDate) {
-      this._startDate = startDate;
+      this._startDate = new Date(startDate);
     }
   
-    //method
     toString() {
-      const option = { year: "numeric", month: "long", day: "numeric " };
+      const options = { year: "numeric", month: "long", day: "numeric" };
       const empDate = !this.startDate
         ? "undefined"
-        : this.startDate.toLocalDateString("en-US", option);
+        : this.startDate.toLocaleDateString("en-us", options);
       return (
         "id=" +
         this.id +
@@ -72,15 +72,15 @@ class EmployeePayrollData {
         this.name +
         ", gender='" +
         this.gender +
-        ", profilepic='" +
-        this.profilepic +
-        ", department='" +
+        ", profilePic='" +
+        this.profilePic +
+        ", department=" +
         this.department +
-        ", salary='" +
+        ", salary=" +
         this.salary +
-        ", startDate='" +
+        ", startDate=" +
         empDate +
-        ", note='" +
+        ", note=" +
         this.note
       );
     }
