@@ -1,4 +1,3 @@
-  
 body {
     margin: 0;
     height: 100%;
@@ -233,4 +232,5 @@ body {
     font-size: 12px;
     font-family: Roboto;
     color: red;
+    display: none;
   }
